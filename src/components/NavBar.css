@@ -1,0 +1,140 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #72c0ea;
+  color: rgb(34, 32, 32);
+  padding: 12px 40px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Logo */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  min-width: 200px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.logo-image {
+  height: 45px;
+  width: auto;
+  object-fit: contain;
+}
+
+.logo-text {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+/* Enlaces */
+.navbar-links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar-links li {
+  margin: 0;
+}
+
+.navbar-links li a {
+  color: #000000;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+}
+
+.navbar-links li a:hover {
+  color: #ffffff;
+}
+
+/* Carrito */
+.cart-section {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  min-width: 150px;
+  justify-content: flex-end;
+}
+
+/* Botón hamburguesa (solo visible en mobile) */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: white;
+  cursor: pointer;
+  padding: 5px;
+}
+
+/* 🔸 RESPONSIVE */
+@media (max-width: 768px) {
+  .navbar {
+    flex-wrap: wrap;
+    position: relative;
+    padding: 12px 20px;
+  }
+
+  .navbar-logo {
+    min-width: auto;
+  }
+
+  .logo-image {
+    height: 35px;
+  }
+
+  .logo-text {
+    font-size: 1.3rem;
+  }
+
+  .navbar-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #222;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    gap: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  }
+
+  .navbar-links.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+    order: 2;
+  }
+
+  .navbar-logo {
+    order: 1;
+    flex: 1;
+  }
+
+  .cart-section {
+    order: 3;
+    min-width: auto;
+  }
+}
