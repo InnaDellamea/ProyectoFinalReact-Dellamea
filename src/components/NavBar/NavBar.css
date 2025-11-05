@@ -1,3 +1,4 @@
+/* ========== NAVBAR PRINCIPAL ========== */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -10,31 +11,58 @@
   z-index: 1000;
   width: 100%;
   box-sizing: border-box;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Logo */
+/* ========== LOGO ========== */
 .navbar-logo {
   display: flex;
   align-items: center;
   gap: 12px;
   flex-shrink: 0;
   min-width: 200px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
+}
+
+.navbar-logo a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
 }
 
 .logo-image {
   height: 45px;
   width: auto;
   object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.logo-image:hover {
+  transform: scale(1.05);
 }
 
 .logo-text {
   font-size: 1.6rem;
   font-weight: 700;
+  color: rgb(34, 32, 32);
 }
 
-/* Enlaces */
+/* ========== BOTÓN HAMBURGUESA ========== */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: rgb(34, 32, 32);
+  cursor: pointer;
+  padding: 5px;
+  transition: transform 0.3s ease;
+}
+
+.menu-toggle:hover {
+  transform: scale(1.1);
+}
+
+/* ========== ENLACES DE NAVEGACIÓN ========== */
 .navbar-links {
   display: flex;
   gap: 40px;
@@ -58,13 +86,16 @@
   font-size: 1.1rem;
   transition: color 0.3s ease;
   white-space: nowrap;
+  padding: 8px 16px;
+  border-radius: 6px;
 }
 
 .navbar-links li a:hover {
   color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
-/* Carrito */
+/* ========== SECCIÓN DEL CARRITO ========== */
 .cart-section {
   display: flex;
   align-items: center;
@@ -73,18 +104,14 @@
   justify-content: flex-end;
 }
 
-/* Botón hamburguesa (solo visible en mobile) */
-.menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 1.8rem;
-  color: white;
-  cursor: pointer;
-  padding: 5px;
+.cart-section a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
 }
 
-/* 🔸 RESPONSIVE */
+/* ========== RESPONSIVE (MOBILE) ========== */
 @media (max-width: 768px) {
   .navbar {
     flex-wrap: wrap;
@@ -94,6 +121,8 @@
 
   .navbar-logo {
     min-width: auto;
+    order: 1;
+    flex: 1;
   }
 
   .logo-image {
@@ -104,37 +133,48 @@
     font-size: 1.3rem;
   }
 
+  .menu-toggle {
+    display: block;
+    order: 2;
+  }
+
+  .cart-section {
+    order: 3;
+    min-width: auto;
+  }
+
   .navbar-links {
     display: none;
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
-    background-color: #222;
+    background-color: #72c0ea;
     flex-direction: column;
     width: 100%;
     text-align: center;
     padding: 20px 0;
     gap: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    order: 4;
+    flex-basis: 100%;
   }
 
   .navbar-links.active {
     display: flex;
   }
 
-  .menu-toggle {
+  .navbar-links li {
+    width: 100%;
+  }
+
+  .navbar-links li a {
     display: block;
-    order: 2;
+    width: 100%;
+    padding: 15px 20px;
   }
 
-  .navbar-logo {
-    order: 1;
-    flex: 1;
-  }
-
-  .cart-section {
-    order: 3;
-    min-width: auto;
+  .navbar-links li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
   }
 }

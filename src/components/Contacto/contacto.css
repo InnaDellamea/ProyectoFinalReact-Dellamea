@@ -1,0 +1,184 @@
+/* ========== CONTENEDOR PRINCIPAL ========== */
+.contacto-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+/* ========== HEADER ========== */
+.contacto-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.contacto-header h2 {
+  font-size: 2.5rem;
+  color: rgb(34, 32, 32);
+  margin-bottom: 10px;
+}
+
+.contacto-header p {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+/* ========== CONTENIDO (INFO + FORMULARIO) ========== */
+.contacto-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+/* ========== INFORMACIÓN DE CONTACTO ========== */
+.contacto-info {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contacto-info h3 {
+  font-size: 1.8rem;
+  color: rgb(34, 32, 32);
+  margin-bottom: 30px;
+}
+
+.info-item {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+  align-items: flex-start;
+}
+
+.info-item .icon {
+  font-size: 2rem;
+  min-width: 40px;
+}
+
+.info-item h4 {
+  font-size: 1.1rem;
+  color: #72c0ea;
+  margin-bottom: 5px;
+}
+
+.info-item p {
+  color: #666;
+  margin: 2px 0;
+  font-size: 0.95rem;
+}
+
+/* ========== FORMULARIO ========== */
+.contacto-form-container {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contacto-form-container h3 {
+  font-size: 1.8rem;
+  color: rgb(34, 32, 32);
+  margin-bottom: 25px;
+}
+
+.contacto-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgb(34, 32, 32);
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 12px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #72c0ea;
+  box-shadow: 0 0 0 3px rgba(114, 192, 234, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* ========== BOTÓN SUBMIT ========== */
+.btn-submit {
+  background-color: #72c0ea;
+  color: rgb(34, 32, 32);
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.btn-submit:hover {
+  background-color: #5ab0da;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(114, 192, 234, 0.4);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 968px) {
+  .contacto-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .contacto-container {
+    padding: 15px;
+    margin: 20px auto;
+  }
+
+  .contacto-header h2 {
+    font-size: 2rem;
+  }
+
+  .contacto-header p {
+    font-size: 1rem;
+  }
+
+  .contacto-info,
+  .contacto-form-container {
+    padding: 20px;
+  }
+
+  .contacto-info h3,
+  .contacto-form-container h3 {
+    font-size: 1.5rem;
+  }
+
+  .info-item {
+    gap: 10px;
+  }
+
+  .info-item .icon {
+    font-size: 1.5rem;
+    min-width: 30px;
+  }
+}
