@@ -3,52 +3,49 @@ import { Suspense, lazy } from "react";
 
 import NavBar from "./components/NavBar/NavBar";
 
-import { CartProvider } from "./context/cartContext/cartContext";
+import { CartProvider } from "./context/CartContext/CartContext";
 
 const ItemListContainer = lazy(() =>
-  import("./components/itemListContainer/itemListContainer")
+  import("./components/ItemListContainer/ItemListContainer")
 );
 const ItemDetailContainer = lazy(() =>
-  import("./components/itemDetail/itemDetailContainer")
+  import("./components/ItemDetailContainer/ItemDetailContainer")
 );
-const Cart = lazy(() => import("./components/cart/cart"));
-const Contacto = lazy(() => import("./components/contacto/contacto"));
-const Acerca = lazy(() => import("./components/acerca/acerca"));
+const Cart = lazy(() => import("./components/Cart/Cart"));
+const Contacto = lazy(() => import("./components/Contacto/Contacto"));
+const Acerca = lazy(() => import("./components/Acerca/Acerca"));
 const CheckoutForm = lazy(() =>
-  import("./components/checkoutForm/checkoutForm")
+  import("./components/CheckoutForm/CheckoutForm")
 );
 
 function App() {
   return (
     <CartProvider>
-      {" "}
       <BrowserRouter>
-        <NavBar />{" "}
+        <NavBar />
         <Suspense fallback={<div>Cargando...</div>}>
-          {" "}
           <Routes>
-            {" "}
             <Route
               path="/"
               element={<ItemListContainer greeting="Bienvenido a IndyTech" />}
-            />{" "}
+            />
             <Route
               path="/productos"
               element={<ItemListContainer greeting="Todos los productos" />}
-            />{" "}
+            />
             <Route
               path="/categoria/:categoriaId"
               element={<ItemListContainer />}
-            />{" "}
+            />
             <Route path="/item/:id" element={<ItemDetailContainer />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/contacto" element={<Contacto />} />
             <Route path="/acerca" element={<Acerca />} />
-            <Route path="/checkout" element={<CheckoutForm />} />{" "}
-            <Route path="*" element={<h2>Página no encontrada</h2>} />{" "}
-          </Routes>{" "}
-        </Suspense>{" "}
-      </BrowserRouter>{" "}
+            <Route path="/checkout" element={<CheckoutForm />} />
+            <Route path="*" element={<h2>Página no encontrada</h2>} />
+          </Routes>
+        </Suspense>
+      </BrowserRouter>
     </CartProvider>
   );
 }
