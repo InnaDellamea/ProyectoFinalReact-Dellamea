@@ -42,7 +42,7 @@ function App() {
           <Route path="/contacto" element={<Contacto />} />
 
           {/* ACERCA */}
-          <Route path="/acerca" element={<Acerca />} />
+          <Route path="/acerca" element={<acerca />} />
 
           {/* CHECKOUT */}
           <Route path="/checkout" element={<CheckoutForm />} />
