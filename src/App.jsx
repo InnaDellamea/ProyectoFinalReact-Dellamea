@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
 
-import Navbar from "./components/Navbar/Navbar.jsx";
+import NavBar from "./components/NavBar/NavBar";
 
 import { CartProvider } from "./context/cartContext/cartContext";
 
