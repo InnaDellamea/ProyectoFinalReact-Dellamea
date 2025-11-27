@@ -1,4 +1,4 @@
-import "./Acerca.css";
+import "./acerca.css";
 const Acerca = () => {
   return (
     <section className="acerca-container">
