@@ -1,16 +1,63 @@
-# React + Vite
+# IndyTech
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Descripción del Proyecto
 
-Currently, two official plugins are available:
+IndyTech es un proyecto web desarrollado con **React** y **Vite**, pensado para crear páginas interactivas y modernas conectadas a **Firebase** como base de datos en tiempo real.  
+El objetivo es ofrecer una experiencia dinámica en la web, con manejo de rutas, datos y componentes interactivos, todo en un entorno rápido de desarrollo y build.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## Tecnologías Utilizadas
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React.js:** Biblioteca principal para construir la interfaz.
+- **Vite:** Entorno de desarrollo y bundler rápido.
+- **React Router DOM:** Manejo de navegación entre páginas.
+- **Firebase (Firestore):** Base de datos en tiempo real y backend as a service.
+- **CSS3:** Estilos básicos y diseño responsivo.
+- **Vercel:** Para el deploy en producción.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Funcionalidades Implementadas
+
+- **Rutas y Navegación:** Varias páginas conectadas con React Router.
+- **Componentes Dinámicos:** Contenido interactivo que responde a acciones del usuario.
+- **Conexión a Firebase:** Lectura y escritura de datos en tiempo real sin exponer credenciales sensibles.
+- **Diseño Responsivo:** Adaptable a móviles, tablets y escritorio.
+- **Favicon personalizado:** Icono propio en la pestaña del navegador.
+
+---
+
+## Guía de Instalación y Ejecución
+
+1. **Requisitos Previos:** Tener instalado Node.js y npm globalmente.
+
+2. **Clonar el Repositorio:**
+
+```bash
+git clone https://github.com/InnaDellamea/NavegaLasRutas-Dellamea.git
+cd IndyTech
+Instalación de Dependencias:
+
+bash
+Copiar código
+npm install
+Configuración de Firebase: Asegúrate de que src/firebase.js tenga tus credenciales de Firebase.
+
+No es necesario subir credenciales privadas al repositorio; la app solo necesita las keys públicas para conectarse.
+
+Iniciar la Aplicación:
+
+bash
+Copiar código
+npm run dev
+La aplicación estará disponible en http://localhost:5173.
+
+Deploy
+El proyecto está listo para deploy en Vercel u otros servicios de hosting estático.
+
+La base de datos en Firebase permanece en la nube y se conecta mediante src/firebase.js, por lo que no se pierde al subir el proyecto a GitHub o al deployar.
+
+¡Gracias por visitar este proyecto! Desarrollado  por Inna Dellamea
+
+```
