@@ -1,10 +1,7 @@
-// En src/components/NavBar/NavBar.jsx
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import CartWidget from "../Cartwidget/CartWidget";
 import "./NavBar.css";
-// Eliminamos la importación de products, no es necesaria aquí
 import logo from "../../assets/logo/Indytechlogo.png";
 
 const NavBar = () => {
@@ -30,10 +27,15 @@ const NavBar = () => {
         <li>
           <Link to="/">Inicio</Link>
         </li>
+
         <li>
-          {/* ✨ ENLACE RESTABLECIDO: Lleva a la lista completa de productos */}
           <Link to="/productos">Productos</Link>
         </li>
+
+        <li>
+          <Link to="/acerca">Acerca de nosotros</Link>
+        </li>
+
         <li>
           <Link to="/contacto">Contacto</Link>
         </li>

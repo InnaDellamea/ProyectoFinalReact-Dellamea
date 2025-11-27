@@ -1,0 +1,347 @@
+/* ========================================= */
+/* ===== CONTENEDOR PRINCIPAL (Wrapper) ==== */
+/* ========================================= */
+.item-detail-container {
+  /* Layout y Dimensiones */
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+
+  /* Tipografía base */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ========================================= */
+/* ===== BOTÓN VOLVER A LISTA (btn-back) === */
+/* ========================================= */
+.btn-back {
+  /* Layout y Dimensiones */
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  text-decoration: none;
+
+  /* Tipografía */
+  color: white;
+  font-weight: 600;
+  font-size: 0.95rem;
+
+  /* Estilos Visuales */
+  background: linear-gradient(135deg, #72c0ea 0%, #5aa3d1 100%);
+  border-radius: 10px;
+  box-shadow: 0 3px 12px rgba(114, 192, 234, 0.3);
+
+  /* Animaciones */
+  transition: all 0.3s ease;
+}
+
+.btn-back:hover {
+  background: linear-gradient(135deg, #5aa3d1 0%, #4890ba 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(114, 192, 234, 0.4);
+}
+
+/* ========================================= */
+/* ===== CONTENIDO DETALLE (detail-content) == */
+/* ========================================= */
+.detail-content {
+  /* Layout: Grid 2 columnas */
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 30px;
+
+  /* Estilos */
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* ========================================= */
+/* ===== IMAGEN (detail-image) ============= */
+/* ========================================= */
+.detail-image {
+  /* Dimensiones y Visualización */
+  width: 100%;
+  height: 300px;
+  object-fit: contain;
+  padding: 15px;
+
+  /* Estilos */
+  background: #f8f9fa;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* ========================================= */
+/* ===== INFO CONTENEDOR (detail-info) ===== */
+/* ========================================= */
+.detail-info {
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+}
+
+/* Título */
+.detail-info h2 {
+  /* Tipografía */
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2c3e50;
+  line-height: 1.2;
+
+  /* Espaciado */
+  margin: 0;
+}
+
+/* Descripción */
+.detail-description {
+  /* Tipografía */
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #5a6c7d;
+
+  /* Espaciado */
+  margin: 10px 0;
+}
+
+/* ========================================= */
+/* ===== PRECIOS (detail-price) ============ */
+/* ========================================= */
+.detail-price {
+  /* Tipografía */
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #72c0ea;
+
+  /* Layout y Espaciado */
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 5px 0;
+}
+
+/* Precio USD (el primero) */
+.detail-price:first-of-type {
+  font-size: 1.8rem; /* Más grande */
+  color: #2c3e50; /* Color primario del texto */
+  font-weight: 600;
+}
+
+/* Precio ARS (el segundo) */
+.detail-price:nth-of-type(2) {
+  color: #72c0ea; /* Color de énfasis */
+  font-size: 1.5rem; /* El tamaño original */
+  font-weight: 700;
+}
+
+/* ========================================= */
+/* ===== CONTADOR (item-count) ============= */
+/* ========================================= */
+.item-count {
+  /* Layout */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  /* Estilos y Espaciado */
+  margin: 15px 0;
+  padding: 8px 15px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  width: fit-content;
+}
+
+/* Botones del contador */
+.item-count button {
+  /* Dimensiones y Aspecto */
+  width: 35px;
+  height: 35px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Estilos */
+  background: linear-gradient(135deg, #72c0ea 0%, #5aa3d1 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(114, 192, 234, 0.3);
+
+  /* Tipografía */
+  font-size: 1.2rem;
+  font-weight: bold;
+
+  /* Animación */
+  transition: all 0.2s ease;
+}
+
+.item-count button:hover {
+  background: linear-gradient(135deg, #5aa3d1 0%, #4890ba 100%);
+  transform: scale(1.1);
+  box-shadow: 0 3px 12px rgba(114, 192, 234, 0.4);
+}
+
+.item-count button:active {
+  transform: scale(0.95);
+}
+
+/* Número del contador */
+.item-count span {
+  min-width: 40px;
+  text-align: center;
+
+  /* Tipografía */
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #2c3e50;
+}
+
+/* ========================================= */
+/* ===== BOTÓN AGREGAR (btn-add-to-cart) === */
+/* ========================================= */
+.btn-add-to-cart {
+  /* Dimensiones y Espaciado */
+  padding: 14px 28px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+
+  /* Tipografía */
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+
+  /* Estilos Visuales */
+  background: linear-gradient(135deg, #72c0ea 0%, #5aa3d1 100%);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(114, 192, 234, 0.3);
+
+  /* Animación */
+  transition: all 0.3s ease;
+}
+
+.btn-add-to-cart:hover {
+  background: linear-gradient(135deg, #5aa3d1 0%, #4890ba 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(114, 192, 234, 0.4);
+}
+
+.btn-add-to-cart:active {
+  transform: scale(0.98);
+}
+
+/* ========================================= */
+/* ===== MENSAJE CARRITO (cart-message) ==== */
+/* ========================================= */
+.cart-message {
+  /* Espaciado */
+  margin-top: 15px;
+  padding: 12px 18px;
+
+  /* Estilos */
+  background: linear-gradient(135deg, #d0f0fd 0%, #e3f5ff 100%);
+  border-left: 5px solid #72c0ea;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(114, 192, 234, 0.2);
+
+  /* Tipografía */
+  color: #2c3e50;
+  font-weight: 600;
+
+  /* Animación (Mantenemos la que ya estaba) */
+  animation: slideInFadeOut 3s forwards;
+}
+
+@keyframes slideInFadeOut {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  90% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+/* ========================================= */
+/* ===== ESTADO CARGANDO (loading) ========= */
+/* ========================================= */
+.item-detail-loading {
+  text-align: center;
+  margin: 60px 0;
+
+  /* Tipografía */
+  color: #72c0ea;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+/* ========================================= */
+/* =========== RESPONSIVE ================== */
+/* ========================================= */
+
+@media (max-width: 968px) {
+  /* Pasar a una sola columna */
+  .detail-content {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    padding: 20px;
+  }
+
+  /* Ajuste de elementos */
+  .detail-image {
+    height: 250px;
+  }
+
+  .detail-info h2 {
+    font-size: 1.8rem;
+  }
+
+  .detail-price {
+    font-size: 1.3rem;
+  }
+
+  .detail-price:first-of-type {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  /* Ajuste de contenedor */
+  .item-detail-container {
+    padding: 10px;
+  }
+
+  .detail-content {
+    padding: 15px;
+  }
+
+  /* Ajuste de elementos pequeños */
+  .detail-image {
+    height: 200px;
+  }
+
+  .detail-info h2 {
+    font-size: 1.4rem;
+  }
+
+  /* El botón de añadir al carrito ocupa todo el ancho */
+  .btn-add-to-cart {
+    width: 100%;
+    font-size: 0.95rem;
+    padding: 12px 20px;
+  }
+}

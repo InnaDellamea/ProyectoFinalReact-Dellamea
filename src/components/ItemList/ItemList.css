@@ -1,19 +1,145 @@
-/* ========== LISTA DE ITEMS ========== */
+/* ===== LISTA DE ITEMS (Contenedor) ===== */
 .item-list {
+  /* Layout: Grid Responsivo */
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 30px;
+
+  /* Dimensiones y Espaciado */
   padding: 20px;
   max-width: 1400px;
   margin: 0 auto;
 }
 
-/* ========== RESPONSIVE ========== */
+/* ===== TARJETA DE ITEM ===== */
+.item-card {
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 20px;
+
+  /* Estilos Visuales */
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  /* Animaciones */
+  transition: all 0.3s ease;
+}
+
+.item-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== IMAGEN ===== */
+.item-image {
+  /* Dimensiones y Visualización */
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+
+  /* Animación */
+  transition: transform 0.3s ease;
+}
+
+.item-card:hover .item-image {
+  transform: scale(1.05);
+}
+
+/* ===== TÍTULO ===== */
+.item-card h3 {
+  /* Tipografía */
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: rgb(34, 32, 32);
+  line-height: 1.4;
+
+  /* Espaciado */
+  margin: 0 0 10px 0;
+  min-height: 50px;
+}
+
+/* ===== PRECIOS ===== */
+
+/* Precio USD (Principal/Enfocado) */
+.price-usd {
+  /* Tipografía */
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #72c0ea;
+
+  /* Espaciado */
+  margin: 0 0 5px 0;
+}
+
+/* Precio ARS (Secundario/Informativo) */
+.price-ars {
+  /* Tipografía */
+  font-size: 1.1rem; /* Reducido para menor énfasis */
+  font-weight: 600;
+  color: #5a6c7d; /* Color más discreto */
+
+  /* Espaciado */
+  margin: 0 0 15px 0;
+}
+
+/* ===== BOTÓN VER DETALLE ===== */
+.item-card .btn {
+  /* Layout y Dimensiones */
+  display: block;
+  width: 100%;
+  padding: 12px;
+  text-align: center;
+  margin-top: auto; /* Para que siempre esté abajo */
+  text-decoration: none;
+
+  /* Tipografía */
+  font-weight: 600;
+  font-size: 1rem;
+  color: rgb(34, 32, 32);
+
+  /* Estilos Visuales */
+  background-color: #72c0ea;
+  border-radius: 8px;
+
+  /* Animación */
+  transition: all 0.3s ease;
+}
+
+.item-card .btn:hover {
+  background-color: #5ab0da;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(114, 192, 234, 0.3);
+}
+
+/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .item-list {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
     padding: 15px;
+  }
+
+  .item-image {
+    height: 200px;
+  }
+
+  .item-card h3 {
+    font-size: 1.1rem;
+    min-height: auto;
+  }
+
+  .price-usd {
+    font-size: 1.3rem;
+  }
+
+  .price-ars {
+    font-size: 1rem; /* Ajuste para móviles */
   }
 }
 
@@ -21,5 +147,9 @@
   .item-list {
     grid-template-columns: 1fr;
     gap: 20px;
+  }
+
+  .item-image {
+    height: 180px;
   }
 }

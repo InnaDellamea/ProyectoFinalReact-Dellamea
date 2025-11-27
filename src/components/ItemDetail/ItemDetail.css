@@ -1,0 +1,141 @@
+/* ===== CONTENEDOR GENERAL ===== */
+.item-detail {
+  /* Layout para grandes pantallas: Dos columnas */
+  display: grid;
+  grid-template-columns: 1fr 1.5fr; /* Imagen (1) | Detalles (1.5) */
+  gap: 40px;
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 20px;
+
+  /* Estilos base */
+  color: #222;
+  text-align: left; /* Alineamos el texto de los detalles a la izquierda */
+}
+
+/* Contenedor de Detalles (para el texto) */
+.item-detail-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alinea los elementos internos a la izquierda */
+}
+
+/* ===== IMAGEN ===== */
+.item-detail img {
+  /* Dimensiones y visualización */
+  width: 100%;
+  max-width: 400px; /* Mantener un máximo para evitar imágenes gigantes */
+  height: auto;
+  object-fit: contain;
+
+  /* Estilos */
+  border-radius: 8px;
+
+  /* Espaciado (reseteado por el grid) */
+  margin: 0;
+}
+
+/* ===== TITULO ===== */
+.item-detail h2 {
+  /* Tipografía */
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #222;
+
+  /* Espaciado */
+  margin: 0 0 10px 0;
+}
+
+/* ===== DESCRIPCIÓN ===== */
+.item-detail p {
+  /* Tipografía */
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6;
+
+  /* Espaciado */
+  margin: 5px 0;
+}
+
+/* ===== PRECIO (Común) ===== */
+.item-detail p strong {
+  /* Estilo de la etiqueta 'Precio USD/ARS' */
+  color: #222;
+  font-weight: 600;
+}
+
+/* Precio en USD (menos prominente) */
+.item-detail p:nth-of-type(1) {
+  /* Selecciona el primer <p> después de la descripción */
+  font-size: 1rem;
+  color: #888;
+}
+
+/* Precio en ARS (más prominente) */
+.item-detail p:nth-of-type(2) {
+  /* Selecciona el segundo <p> después de la descripción */
+  font-size: 1.5rem;
+  color: #72c0ea; /* Color principal */
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+/* ===== ITEMCOUNT (Controles de cantidad) ===== */
+.item-detail .item-count {
+  margin-top: 20px;
+}
+
+/* ==================================== */
+/* =========== RESPONSIVE ============= */
+/* ==================================== */
+
+@media (max-width: 900px) {
+  /* Convertir a una sola columna para tabletas y móviles */
+  .item-detail {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    text-align: center;
+  }
+
+  /* Centrar la imagen en modo columna */
+  .item-detail img {
+    margin: 0 auto;
+  }
+
+  /* Centrar el texto en modo columna */
+  .item-detail h2,
+  .item-detail p,
+  .item-detail-info {
+    text-align: center;
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .item-detail h2 {
+    font-size: 1.8rem;
+  }
+
+  .item-detail p {
+    font-size: 1rem;
+  }
+
+  .item-detail img {
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .item-detail img {
+    max-width: 250px;
+  }
+
+  .item-detail h2 {
+    font-size: 1.5rem;
+  }
+
+  /* Ajuste de tipografía de precios */
+  .item-detail p:nth-of-type(2) {
+    font-size: 1.3rem;
+  }
+}

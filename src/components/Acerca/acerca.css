@@ -1,0 +1,26 @@
+.acerca-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 40px;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+.acerca-content {
+  max-width: 600px;
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+.acerca-title {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #0f4c75; /* podes cambiar a tu color */
+}
+
+.acerca-image img {
+  width: 420px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}

@@ -1,29 +1,52 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { products } from "../../data/products";
+import { getProductById } from "../../firebase/firebaseProducts";
 import { useCart } from "../../context/CartContext";
-// Importa el archivo CSS si lo tienes (ej: './ItemDetailContainer.css')
+import "./ItemDetailContainer.css";
+
+const USD_TO_ARS = 1447;
 
 const ItemDetailContainer = () => {
-  const { id } = useParams(); // Captura el :id de la URL
+  const { id } = useParams();
   const { addToCart } = useCart();
   const [product, setProduct] = useState(null);
   const [cantidad, setCantidad] = useState(1);
+  const [message, setMessage] = useState("");
+  const [imageError, setImageError] = useState(false);
 
   useEffect(() => {
-    // 1. Inicia la carga
     setProduct(null);
+    setImageError(false);
 
-    const fetchProduct = new Promise((resolve) => {
-      setTimeout(() => {
-        // 2. Busca el producto, asegurando que el ID de la URL (string) se convierta a número
-        const found = products.find((p) => p.id === parseInt(id));
-        resolve(found);
-      }, 500);
-    });
+    const fetchProduct = async () => {
+      try {
+        const data = await getProductById(id);
+        setProduct(data);
+      } catch (error) {
+        console.error("Error cargando el producto:", error);
+      }
+    };
 
-    fetchProduct.then((data) => setProduct(data));
+    fetchProduct();
   }, [id]);
+
+  const getImageUrl = () => {
+    if (imageError) {
+      return "https://via.placeholder.com/400x300.png?text=Sin+Imagen";
+    }
+
+    const imagen = product?.imagen;
+
+    if (typeof imagen === "string" && imagen.startsWith("http")) {
+      return imagen;
+    }
+
+    return "https://via.placeholder.com/400x300.png?text=Sin+Imagen";
+  };
+
+  const handleImageError = () => {
+    setImageError(true);
+  };
 
   if (!product) {
     return (
@@ -33,24 +56,36 @@ const ItemDetailContainer = () => {
     );
   }
 
+  const handleAddToCart = () => {
+    addToCart({ ...product, cantidad });
+    setMessage(`${cantidad} ${product.nombre} agregado(s) al carrito!`);
+    setTimeout(() => setMessage(""), 3000);
+  };
+
   return (
     <div className="item-detail-container">
-      <Link to="/" className="back-link">
+      <Link to="/productos" className="btn-back">
         ← Volver a la lista
       </Link>
 
       <div className="detail-content">
         <img
-          src={product.imagen}
+          src={getImageUrl()}
           alt={product.nombre}
           className="detail-image"
+          onError={handleImageError}
         />
+
         <div className="detail-info">
           <h2>{product.nombre}</h2>
           <p className="detail-description">{product.descripcion}</p>
-          <p className="detail-price">Precio: **${product.precio}**</p>
 
-          {/* Contador de unidades */}
+          <p className="detail-price">Precio USD: ${product.precio || 0}</p>
+          <p className="detail-price">
+            Precio ARS: $
+            {((product.precio || 0) * USD_TO_ARS).toLocaleString("es-AR")}
+          </p>
+
           <div className="item-count">
             <button onClick={() => setCantidad(Math.max(1, cantidad - 1))}>
               -
@@ -59,12 +94,11 @@ const ItemDetailContainer = () => {
             <button onClick={() => setCantidad(cantidad + 1)}>+</button>
           </div>
 
-          <button
-            className="btn-add-to-cart"
-            onClick={() => addToCart({ ...product, cantidad })}
-          >
+          <button className="btn-add-to-cart" onClick={handleAddToCart}>
             Agregar {cantidad} al carrito
           </button>
+
+          {message && <div className="cart-message">{message}</div>}
         </div>
       </div>
     </div>

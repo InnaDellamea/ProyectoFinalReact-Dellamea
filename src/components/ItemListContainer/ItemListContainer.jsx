@@ -1,117 +1,156 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { products } from "../../data/products";
-import "./ItemListContainer.css"; // Asegúrate que tu CSS esté importado
+import { getAllProducts } from "../../firebase/firebaseProducts";
+import "./ItemListContainer.css";
 
 const ItemListContainer = ({ greeting }) => {
   const { categoriaId } = useParams();
   const [items, setItems] = useState([]);
+  const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(true);
+  const isHome = window.location.pathname === "/";
+
+  // Validar que el producto tenga los datos necesarios
+  const isValidProduct = (prod) => {
+    return (
+      prod.id &&
+      prod.nombre &&
+      typeof prod.precio === "number" &&
+      prod.precio > 0
+    );
+  };
+
+  // Función para obtener imagen segura
+  const getImageUrl = (prod) => {
+    if (typeof prod?.imagen === "string" && prod.imagen.startsWith("http")) {
+      return prod.imagen;
+    }
+    return "https://via.placeholder.com/400x300.png?text=Sin+Imagen";
+  };
 
   useEffect(() => {
-    // Simulamos fetch de productos
-    const fetchProducts = new Promise((resolve) => {
-      setTimeout(() => {
-        if (categoriaId) {
-          resolve(products.filter((prod) => prod.categoria === categoriaId));
-        } else {
-          resolve(products);
-        }
-      }, 500);
-    });
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const data = await getAllProducts();
+        const validProducts = data.filter(isValidProduct);
+        setItems(validProducts);
+      } catch (error) {
+        console.error("Error cargando productos:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
 
-    fetchProducts.then((data) => setItems(data));
-  }, [categoriaId]);
+  // Filtrado por búsqueda
+  const filteredItems = items.filter(
+    (prod) =>
+      prod.nombre?.toLowerCase().includes(search.toLowerCase()) ||
+      prod.categoria?.toLowerCase().includes(search.toLowerCase())
+  );
 
-  // Saber si estamos en home
-  const isHome = !categoriaId;
+  // Filtrado por categoría
+  const categoryItems = categoriaId
+    ? items.filter(
+        (prod) => prod.categoria?.toLowerCase() === categoriaId.toLowerCase()
+      )
+    : filteredItems;
+
+  // Productos destacados aleatorios
+  const destacados = [...items].sort(() => Math.random() - 0.5).slice(0, 3);
+
+  if (loading) {
+    return (
+      <div className="item-list-container">
+        <p className="loading-message">Cargando productos...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="item-list-container">
-      {/* Banner principal - solo en home */}
+      {/* HERO BANNER - Solo en home */}
       {isHome && (
         <div className="hero-banner">
           <div className="hero-content">
-            <h1>¡Bienvenido a IndyTech!</h1>
+            <h1>¡Bienvenida a IndyTech!</h1>
             <p>Las mejores ofertas en tecnología</p>
           </div>
-          <Link to="/produtos" className="btn-hero">
-            Ver Productos
+          <Link to="/productos" className="btn-hero">
+            Ver Todos los Productos
           </Link>
         </div>
       )}
 
-      {/* Categorías destacadas - solo en home */}
-      {isHome && (
-        <div className="categories-section">
-          <h2 className="section-title">Categorías</h2>
-          <div className="categories-grid">
-            <Link to="/categoria/laptops" className="category-card">
-              <div className="category-icon">💻</div>
-              <h3>Laptops</h3>
-              <p>Notebooks y ultrabooks</p>
-            </Link>
-            <Link to="/categoria/componentes" className="category-card">
-              <div className="category-icon">🔧</div>
-              <h3>Componentes</h3>
-              <p>Hardware para tu PC</p>
-            </Link>
-            <Link to="/categoria/monitores" className="category-card">
-              <div className="category-icon">🖥️</div>
-              <h3>Monitores</h3>
-              <p>Pantallas de alta calidad</p>
-            </Link>
-            <Link to="/categoria/perifericos" className="category-card">
-              <div className="category-icon">⌨️</div>
-              <h3>Periféricos</h3>
-              <p>Mouse, teclados y más</p>
-            </Link>
-          </div>
-        </div>
-      )}
-
-      {/* Título de sección */}
-      <div className="products-header">
-        <h2 className="section-title">
-          {categoriaId
-            ? `Categoría: ${
-                categoriaId.charAt(0).toUpperCase() + categoriaId.slice(1)
-              }` // Capitalizamos el título de categoría
-            : greeting || "Productos Destacados"}
-        </h2>
-        {categoriaId && (
-          <Link to="/" className="btn-back-home">
-            ← Volver al inicio
-          </Link>
-        )}
-      </div>
-
-      {/* ✨ GRID DE PRODUCTOS: AHORA ESTÁN DENTRO DE .items-grid */}
-      <div className="items-grid">
-        {items.map((prod) => (
-          <div key={prod.id} className="item-card">
-            <div className="item-image-wrapper">
-              <img src={prod.imagen} alt={prod.nombre} className="item-image" />
-            </div>
-            <div className="item-info">
-              <h3 className="item-title">{prod.nombre}</h3>
-              <div className="item-price-section">
-                <p className="item-price">${prod.precio}</p>
-                <span className="shipping-badge">Envío gratis</span>
+      {/* PRODUCTOS DESTACADOS - Solo en home */}
+      {isHome && destacados.length > 0 && (
+        <div className="destacados-section">
+          <h2 className="section-title">⭐ Productos Destacados</h2>
+          <div className="items-grid">
+            {destacados.map((prod) => (
+              <div key={prod.id} className="item-card">
+                <img
+                  src={getImageUrl(prod)}
+                  alt={prod.nombre}
+                  className="item-image"
+                />
+                <h3>{prod.nombre}</h3>
+                <p className="item-price">USD ${prod.precio}</p>
+                <Link to={`/item/${prod.id}`} className="btn-detail">
+                  Ver Detalle
+                </Link>
               </div>
-              <Link to={`/item/${prod.id}`} className="btn-detail">
-                Ver Detalle
-              </Link>
-            </div>
+            ))}
           </div>
-        ))}
-      </div>
-
-      {/* Banner inferior - solo en home */}
-      {isHome && (
-        <div className="promo-banner">
-          <h3>🎉 Ofertas de la semana</h3>
-          <p>Hasta 30% de descuento en productos seleccionados</p>
         </div>
+      )}
+
+      {/* LISTADO COMPLETO - Solo en /productos */}
+      {!isHome && (
+        <>
+          <div className="products-header">
+            <h2 className="section-title">
+              {categoriaId
+                ? `Categoría: ${categoriaId}`
+                : "Todos los Productos"}
+            </h2>
+          </div>
+
+          {/* Buscador */}
+          <div className="search-container">
+            <input
+              type="text"
+              placeholder="Buscar producto o categoría..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="search-input"
+            />
+          </div>
+
+          {/* Grid de productos */}
+          <div className="items-grid">
+            {categoryItems.length > 0 ? (
+              categoryItems.map((prod) => (
+                <div key={prod.id} className="item-card">
+                  <img
+                    src={getImageUrl(prod)}
+                    alt={prod.nombre}
+                    className="item-image"
+                  />
+                  <h3 className="item-title">{prod.nombre}</h3>
+                  <p className="item-price">USD ${prod.precio}</p>
+                  <Link to={`/item/${prod.id}`} className="btn-detail">
+                    Ver Detalle
+                  </Link>
+                </div>
+              ))
+            ) : (
+              <p className="no-products">No hay productos disponibles.</p>
+            )}
+          </div>
+        </>
       )}
     </div>
   );

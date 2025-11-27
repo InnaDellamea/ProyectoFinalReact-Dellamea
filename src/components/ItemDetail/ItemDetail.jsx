@@ -3,15 +3,14 @@ import ItemCount from "./ItemCount";
 import { useCart } from "../../context/CartContext";
 import "./ItemDetail.css";
 
-const ItemDetail = ({ id, name, img, price, description }) => {
+const USD_TO_ARS = 1447;
+
+const ItemDetail = ({ id, nombre, imagen, precio, descripcion }) => {
   const { addItem } = useCart();
 
   const handleOnAdd = (quantity) => {
-    // construimos un objeto de producto para guardar en el carrito
-    const product = { id, name, price, img };
+    const product = { id, nombre, precio, imagen };
     addItem(product, quantity);
-    // puedes mostrar un toast o redirect si querés
-    console.log(`Agregaste ${quantity} unidades de ${name}`);
   };
 
   return (
@@ -20,14 +19,23 @@ const ItemDetail = ({ id, name, img, price, description }) => {
       style={{ color: "white", textAlign: "center" }}
     >
       <img
-        src={img}
-        alt={name}
+        src={imagen}
+        alt={nombre}
         style={{ maxWidth: 400, width: "100%", borderRadius: 8 }}
       />
-      <h2>{name}</h2>
-      <p>{description}</p>
+
+      <h2>{nombre}</h2>
+      <p>{descripcion}</p>
+
+      {/* Precio en USD */}
       <p>
-        <strong>Precio:</strong> ${price}
+        <strong>Precio USD:</strong> ${precio}
+      </p>
+
+      {/* Precio en ARS */}
+      <p>
+        <strong>Precio ARS:</strong>{" "}
+        {(precio * USD_TO_ARS).toLocaleString("es-AR")}
       </p>
 
       <ItemCount stock={20} initial={1} onAdd={handleOnAdd} />

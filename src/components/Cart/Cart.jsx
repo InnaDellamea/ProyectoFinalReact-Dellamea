@@ -1,9 +1,14 @@
 import { useCart } from "../../context/CartContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Cart.css";
 
 const Cart = () => {
   const { cart, removeFromCart, clearCart, getTotalPrice } = useCart();
+  const navigate = useNavigate();
+
+  const handleCheckout = () => {
+    navigate("/checkout"); // Redirige al formulario de checkout
+  };
 
   if (cart.length === 0) {
     return (
@@ -33,9 +38,9 @@ const Cart = () => {
             <div className="item-info">
               <h3>{item.nombre}</h3>
               <p className="item-price">Precio: ${item.precio}</p>
-              <p className="item-quantity">Cantidad: {item.quantity}</p>
+              <p className="item-quantity">Cantidad: {item.cantidad}</p>
               <p className="item-subtotal">
-                Subtotal: ${(item.precio * item.quantity).toFixed(2)}
+                Subtotal: ${(item.precio * item.cantidad).toFixed(2)}
               </p>
             </div>
             <button
@@ -54,10 +59,15 @@ const Cart = () => {
           <span>Total:</span>
           <span className="total-price">${getTotalPrice()}</span>
         </div>
-        <button className="btn-checkout">Finalizar Compra</button>
-        <Link to="/" className="btn-continue">
-          Seguir comprando
-        </Link>
+
+        <div className="cart-buttons">
+          <button className="btn-checkout" onClick={handleCheckout}>
+            Finalizar Compra
+          </button>
+          <Link to="/productos" className="btn-continue">
+            Seguir comprando
+          </Link>
+        </div>
       </div>
     </div>
   );
