@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
 
-import NavBar from "./components/NavBar/NavBar.jsx";
+import NavBar from "./components/navBar/navBar.jsx";
 
-import { CartProvider } from "./context/cartContextartContext";
+import { CartProvider } from "./context/cartContext/cartContext";
 
 const ItemListContainer = lazy(() =>
   import("./components/itemListContainer/itemListContainer")
