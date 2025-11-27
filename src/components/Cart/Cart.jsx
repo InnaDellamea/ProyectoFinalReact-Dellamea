@@ -1,4 +1,4 @@
-import { useCart } from "../../context/CartContext";
+import { useCart } from "../../context/cartContext";
 import { Link, useNavigate } from "react-router-dom";
 import "./Cart.css";
 

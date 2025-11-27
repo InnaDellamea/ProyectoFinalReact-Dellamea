@@ -1,6 +1,6 @@
 import React from "react";
 import ItemCount from "./ItemCount";
-import { useCart } from "../../context/CartContext";
+import { useCart } from "../../context/cartContext";
 import "./ItemDetail.css";
 
 const USD_TO_ARS = 1447;

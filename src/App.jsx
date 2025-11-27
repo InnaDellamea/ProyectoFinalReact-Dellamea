@@ -1,20 +1,20 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
-import NavBar from "./components/NavBar/NavBar";
-import { CartProvider } from "./context/CartContext";
+import NavBar from "./components/navBar/navBar";
+import { CartProvider } from "./context/cartContext";
 
 // Lazy loading de componentes grandes
 const ItemListContainer = lazy(() =>
-  import("./components/ItemListContainer/ItemListContainer")
+  import("./components/itemListContainer/ItemListContainer")
 );
 const ItemDetailContainer = lazy(() =>
-  import("./components/ItemDetail/ItemDetailContainer")
+  import("./components/itemDetail/itemDetailContainer")
 );
-const Cart = lazy(() => import("./components/Cart/Cart"));
-const Contacto = lazy(() => import("./components/Contacto/Contacto"));
-const Acerca = lazy(() => import("./components/acerca/Acerca"));
+const Cart = lazy(() => import("./components/cart/cart"));
+const Contacto = lazy(() => import("./components/contacto/contacto"));
+const Acerca = lazy(() => import("./components/acerca/acerca"));
 const CheckoutForm = lazy(() =>
-  import("./components/CheckoutForm/CheckoutForm")
+  import("./components/checkoutForm/checkoutForm")
 );
 
 function App() {

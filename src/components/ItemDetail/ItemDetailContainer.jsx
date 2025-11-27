@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getProductById } from "../../firebase/firebaseProducts";
-import { useCart } from "../../context/CartContext";
+import { useCart } from "../../context/cartContext";
 import "./ItemDetailContainer.css";
 
 const USD_TO_ARS = 1447;
