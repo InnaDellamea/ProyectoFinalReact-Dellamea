@@ -3,7 +3,7 @@ import { Suspense, lazy } from "react";
 
 import NavBar from "./components/navbar/navbar";
 
-import { CartProvider } from "./context/CartContext/CartContext";
+import { CartProvider } from "./context/cartContext";
 
 const ItemListContainer = lazy(() =>
   import("./components/ItemListContainer/ItemListContainer")
