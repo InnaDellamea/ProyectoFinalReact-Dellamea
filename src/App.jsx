@@ -12,7 +12,7 @@ const ItemDetailContainer = lazy(() =>
 );
 const Cart = lazy(() => import("./components/Cart/Cart"));
 const Contacto = lazy(() => import("./components/Contacto/Contacto"));
-const Acerca = lazy(() => import("./components/Acerca/acerca"));
+const Acerca = lazy(() => import("./components/acerca/acerca"));
 const CheckoutForm = lazy(() =>
   import("./components/CheckoutForm/CheckoutForm")
 );
