@@ -1,9 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
 
-import NavBar from "./components/navbar/navbar";
+import NavBar from "./components/NavBar/NavBar.jsx";
 
-// CORREGIDO: Manteniendo CartContext en PascalCase para que coincida con el nombre del archivo.
 import { CartProvider } from "./context/cartContextartContext";
 
 const ItemListContainer = lazy(() =>
