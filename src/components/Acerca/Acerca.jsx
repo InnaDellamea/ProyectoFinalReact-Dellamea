@@ -1,5 +1,5 @@
-import "./Acerca.css";
-const Acerca = () => {
+import "./acerca.css";
+const acerca = () => {
   return (
     <section className="acerca-container">
       <div className="acerca-content">
@@ -46,4 +46,4 @@ const Acerca = () => {
   );
 };
 
-export default Acerca;
+export default acerca;

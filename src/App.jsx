@@ -12,7 +12,7 @@ const ItemDetailContainer = lazy(() =>
 );
 const Cart = lazy(() => import("./components/Cart/Cart"));
 const Contacto = lazy(() => import("./components/Contacto/Contacto"));
-const Acerca = lazy(() => import("./components/Acerca/Acerca"));
+const Acerca = lazy(() => import("./components/Acerca/acerca"));
 const CheckoutForm = lazy(() =>
   import("./components/CheckoutForm/CheckoutForm")
 );
@@ -52,7 +52,7 @@ function App() {
             <Route path="/contacto" element={<Contacto />} />
 
             {/* ACERCA */}
-            <Route path="/acerca" element={<Acerca />} />
+            <Route path="/acerca" element={<acerca />} />
 
             {/* CHECKOUT */}
             <Route path="/checkout" element={<CheckoutForm />} />
